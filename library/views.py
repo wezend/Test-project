@@ -23,6 +23,19 @@ def get_book(request, id):
     except book.DoesNotExist:
         return Response('Wrong id')
 
+@api_view(['POST'])
+def update_book(request):
+    try:
+        updatedBook = book.objects.get(id = request.data['id'])
+        if 'title' in request.data:
+            updatedBook.title = request.data['title']
+        if 'author' in request.data:
+            updatedBook.author = author.objects.get(id = request.data['author'])
+        updatedBook.save()
+        return Response('Success')
+    except book.DoesNotExist:
+        return Response('Unsuccess')
+
 @api_view(['GET'])
 def delete_book(request, id):
     try:
