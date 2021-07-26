@@ -1,6 +1,7 @@
 from django.db import models
 from django.db.models.deletion import CASCADE
 from django.db.models.fields import CharField
+from django.db.models import Count
 
 # Create your models here.
 
@@ -9,6 +10,9 @@ class author(models.Model):
 
     def __str__(self):
         return self.name
+    
+    def number_of_books(self):
+        return self.book_set.count()
 
 class book(models.Model):
     author = models.ForeignKey(
@@ -19,4 +23,3 @@ class book(models.Model):
 
     def __str__(self):
         return self.title
-        
