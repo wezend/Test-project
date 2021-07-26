@@ -36,7 +36,7 @@ def update_book(request):
     except book.DoesNotExist:
         return Response('Unsuccess')
 
-@api_view(['GET'])
+@api_view(['DELETE'])
 def delete_book(request, id):
     try:
         book.objects.get(id = id).delete() 
