@@ -18,4 +18,15 @@ def get_books(request):
 
 @api_view(['GET'])
 def get_book(request, id):
-    return Response(bookSerialiser(book.objects.get(id = id)).data)
+    try: 
+        return Response(bookSerialiser(book.objects.get(id = id)).data)
+    except book.DoesNotExist:
+        return Response('Wrong id')
+
+@api_view(['GET'])
+def delete_book(request, id):
+    try:
+        book.objects.get(id = id).delete() 
+        return Response('Success')
+    except book.DoesNotExist:
+        return Response('Wrong id')
