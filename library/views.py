@@ -13,6 +13,9 @@ class AuthorListView(generic.ListView):
 
 
 @api_view(['GET'])
-def books(request):
-    print(book.objects.all().select_related())
+def get_books(request):
     return Response(bookSerialiser(book.objects.all(), many=True).data)
+
+@api_view(['GET'])
+def get_book(request, id):
+    return Response(bookSerialiser(book.objects.get(id = id)).data)
