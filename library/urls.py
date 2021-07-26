@@ -1,7 +1,7 @@
 from django.urls import path
 
-from . import views
+from .views import AuthorListView
 
 urlpatterns = [
-    
+    path('', AuthorListView.as_view())
 ]

@@ -1,0 +1,21 @@
+
+{% block content %}
+    <h1>Library</h1>
+
+    {% if author_list %}
+    <ul>
+
+      {% for author in author_list %}
+      <li>
+        {{ author.name }} : 
+            {%for q in author.book_set.all %} 
+                {{q.title}},
+            {% endfor %}
+      </li>
+      {% endfor %}
+
+    </ul>
+    {% else %}
+      <p>There are no books in the library.</p>
+    {% endif %} 
+{% endblock %}
