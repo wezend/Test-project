@@ -1,11 +1,12 @@
 from django.urls import path
 
-from .views import AuthorListView, get_books, get_book, delete_book, update_book
+from .views import BooksList, BookById, UpdateBook, DeleteBook, CreateBook, CreateAuthor
 
 urlpatterns = [
-    path('', AuthorListView.as_view()),
-    path('api/v1/books/list', get_books),
-    path('api/v1/books/by-<int:id>', get_book),
-    path('api/v1/books/update', update_book),
-    path('api/v1/books/<int:id>', delete_book)
+    path('books/list', BooksList.as_view()),
+    path('books/by-<int:id>', BookById.as_view()),
+    path('books/update<int:id>', UpdateBook.as_view()),
+    path('books/<int:id>', DeleteBook.as_view()),
+    path('books', CreateBook.as_view()),
+    path('authors', CreateAuthor.as_view())
 ]

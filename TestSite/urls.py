@@ -15,8 +15,10 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import include, path
+from library.views import AuthorListView
 
 urlpatterns = [
-    path('', include('library.urls')),
+    path('', AuthorListView.as_view()),
+    path('api/v1/', include('library.urls')),
     path('admin/', admin.site.urls),
 ]
